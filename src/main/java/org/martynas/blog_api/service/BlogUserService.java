@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface BlogUserService extends UserDetailsService {
 
-    Optional<BlogUser> findByUsername(String username);
+    Optional<BlogUser> findByEmail(String email);
 
     BlogUser saveNewBlogUser(BlogUser blogUser) throws RoleNotFoundException;
 

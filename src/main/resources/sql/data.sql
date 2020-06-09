@@ -1,9 +1,9 @@
-insert into USERS (ID, PASSWORD, USERNAME, ENABLED)
+insert into USERS (ID, PASSWORD, EMAIL, ENABLED)
 VALUES (0, '', 'anonymous', true);
-insert into USERS (ID, PASSWORD, USERNAME, ENABLED)
-VALUES (1, '$2a$06$OAPObzhRdRXBCbk7Hj/ot.jY3zPwR8n7/mfLtKIgTzdJa4.6TwsIm', 'admin', true);
-insert into USERS (ID, PASSWORD, USERNAME, ENABLED)
-VALUES (2, '$2a$06$OAPObzhRdRXBCbk7Hj/ot.jY3zPwR8n7/mfLtKIgTzdJa4.6TwsIm', 'user', true);
+insert into USERS (ID, PASSWORD, EMAIL, ENABLED)
+VALUES (1, '$2a$06$OAPObzhRdRXBCbk7Hj/ot.jY3zPwR8n7/mfLtKIgTzdJa4.6TwsIm', 'admin@martynas.org', true);
+insert into USERS (ID, PASSWORD, EMAIL, ENABLED)
+VALUES (2, '$2a$06$OAPObzhRdRXBCbk7Hj/ot.jY3zPwR8n7/mfLtKIgTzdJa4.6TwsIm', 'user@martynas.org', true);
 
 insert into AUTHORITIES (ID, AUTHORITY)
 VALUES (0, 'ROLE_ANONYMOUS');

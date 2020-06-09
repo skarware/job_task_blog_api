@@ -9,10 +9,10 @@ create table users
 (
     id       bigint       not null,
     password varchar(255) not null,
-    username varchar(255) not null,
+    email varchar(255) not null,
     enabled  boolean      not null,
     primary key (id),
-    constraint UK_r43af9ap4edm43mmtq01oddj6 unique (username)
+    constraint UK_r43af9ap4edm43mmtq01oddj6 unique (email)
 );
 create table posts
 (

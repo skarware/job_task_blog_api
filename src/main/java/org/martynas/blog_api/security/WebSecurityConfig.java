@@ -15,12 +15,12 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
-    private static final String USERS_SQL_QUERY = "select username,password,enabled from users where username = ?";
-    private static final String AUTHORITIES_SQL_QUERY = "select users.username, authorities.authority\n" +
+    private static final String USERS_SQL_QUERY = "select email,password,enabled from users where email = ?";
+    private static final String AUTHORITIES_SQL_QUERY = "select users.email, authorities.authority\n" +
             "from users\n" +
             "inner join users_authorities on (users.id = users_authorities.user_id)\n" +
             "inner join authorities on (users_authorities.authority_id = authorities.id)\n" +
-            "where users.username = ?;";
+            "where users.email = ?;";
 
     @Autowired
     public WebSecurityConfig(DataSource dataSource) {
@@ -59,8 +59,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         authenticationManagerBuilder
                 .jdbcAuthentication()
-                .usersByUsernameQuery(USERS_SQL_QUERY) // not really necessary, as users table follows default Spring Security User schema
-                .authoritiesByUsernameQuery(AUTHORITIES_SQL_QUERY)  // a must as using customized authorities table, many to many variation
+                .usersByUsernameQuery(USERS_SQL_QUERY) // necessary as users table do not follows default Spring Security User schema, this app use email for auth
+                .authoritiesByUsernameQuery(AUTHORITIES_SQL_QUERY)  // a must as using customized authorities table because many to many variation
                 .dataSource(dataSource)
                 .passwordEncoder(bcryptEncoder());
     }

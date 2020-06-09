@@ -48,7 +48,7 @@ public class Post {
                 ", title='" + title + '\'' +
                 ", body='" + body + '\'' +
                 ", creationDate=" + creationDate +
-                ", username=" + user.getUsername() +
+                ", email=" + user.getEmail() +
 //                ", user=" + user + // this way it is making the inf loop
                 '}';
     }

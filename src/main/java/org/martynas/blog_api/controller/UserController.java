@@ -34,15 +34,15 @@ public class UserController {
     @PostMapping("/register")
     public String registerNewUser(@Valid BlogUser blogUser, BindingResult bindingResult) throws RoleNotFoundException {
 
-        // Check if username is available
-        if (blogUserService.findByUsername(blogUser.getUsername()).isPresent()) {
-            return "Username is already registered try other one or go away";
+        // Check if email/username is available
+        if (blogUserService.findByEmail(blogUser.getEmail()).isPresent()) {
+            return "Email is already registered try other one or go away";
         }
 
         // Validate users fields
         if (bindingResult.hasErrors()) {
             String validationErrorMsg = Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage();
-            return "New user did not validate; " + validationErrorMsg;
+            return "Validation Error: " + validationErrorMsg;
         }
 
         // if pass validation, no any errors then Persist new blog user into database

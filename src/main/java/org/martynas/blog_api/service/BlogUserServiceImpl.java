@@ -30,15 +30,16 @@ public class BlogUserServiceImpl implements BlogUserService {
         this.authorityRepository = authorityRepository;
     }
 
+    // Use email as username to implement BlogUserService interface
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<BlogUser> blogUser = blogUserRepository.findByUsername(username);
-        return blogUser.orElseThrow(() -> new UsernameNotFoundException("No user found with username " + username));
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<BlogUser> blogUser = blogUserRepository.findByEmail(email);
+        return blogUser.orElseThrow(() -> new UsernameNotFoundException("No user found with email " + email));
     }
 
     @Override
-    public Optional<BlogUser> findByUsername(String username) {
-        return blogUserRepository.findByUsername(username);
+    public Optional<BlogUser> findByEmail(String email) {
+        return blogUserRepository.findByEmail(email);
     }
 
     @Override
@@ -58,7 +59,7 @@ public class BlogUserServiceImpl implements BlogUserService {
             blogUser.setAuthorities(authorities);
             return this.blogUserRepository.saveAndFlush(blogUser);
         } else {
-            throw new RoleNotFoundException("Default role not found for blog user with username " + blogUser.getUsername());
+            throw new RoleNotFoundException("Default role not found for blog user with email " + blogUser.getEmail());
         }
     }
 }
