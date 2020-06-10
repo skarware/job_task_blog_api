@@ -15,8 +15,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Collection<Post> findAllByOrderByCreationDateDesc();
 
     Collection<Post> findAllByUserOrderByCreationDate(@NotNull BlogUser blogUser);
-    // Whats a difference between those two ?
-    Collection<Post> findByUserOrderByCreationDate(@NotNull BlogUser blogUser);
 
     Optional<Post> findById(Long id);
 }

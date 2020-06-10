@@ -1,5 +1,6 @@
 package org.martynas.blog_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.Objects;
 
 @Data
 @Entity
@@ -36,10 +38,15 @@ public class Post {
     @Column(name = "creation_date", nullable = false, updatable = false)
     private Date creationDate;
 
-    @NotNull
+    @JsonIgnore
+//    @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private BlogUser user;
+
+    public String getCreatedBy(){
+        return Objects.requireNonNull(user.getUsername());
+    }
 
     @Override
     public String toString() {
@@ -48,8 +55,7 @@ public class Post {
                 ", title='" + title + '\'' +
                 ", body='" + body + '\'' +
                 ", creationDate=" + creationDate +
-                ", email=" + user.getEmail() +
-//                ", user=" + user + // this way it is making the inf loop
+                ", createdBy=" + getCreatedBy() +
                 '}';
     }
 }

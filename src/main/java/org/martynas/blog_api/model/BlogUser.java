@@ -39,9 +39,11 @@ public class BlogUser implements UserDetails {
     @Column(name = "enabled", nullable = false)
     private Boolean enabled;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Collection<Post> posts;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "users_authorities",

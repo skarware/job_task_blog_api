@@ -12,9 +12,7 @@ public interface PostService {
 
     Collection<Post> getAll();
 
-    Collection<Post> findAllByUser(BlogUser blogUser);
-
-    Collection<Post> findByUser(BlogUser blogUser);
+    Collection<Post> getAllByUser(BlogUser blogUser);
 
     Post save(Post post);
 
